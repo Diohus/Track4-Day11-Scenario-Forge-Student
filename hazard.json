@@ -1,0 +1,54 @@
+{
+  "format": "avsim-studio/1",
+  "params": {
+    "cutT0": 5,
+    "cutDur": 2.4,
+    "cutV": 15,
+    "pedT0": 9.6,
+    "pedV": 1.45,
+    "busGo": 17.5,
+    "cutDs": -4,
+    "tgT": 0.9,
+    "mu": 0.8,
+    "cutGap": 12,
+    "cutBrake": 0,
+    "pedGap": 4.5,
+    "pedLook": 1,
+    "civil": true
+  },
+  "policy": {},
+  "hazards": [
+    {
+      "type": "bike",
+      "x": 10,
+      "lane": "E2",
+      "d": 0,
+      "v": 4,
+      "swerve": 2.9,
+      "swDur": 2.6,
+      "t0": 0,
+      "trig": 23
+    }
+  ],
+  "world": "scene",
+  "space": {
+    "h0_x": [
+      -5,
+      25
+    ],
+    "h0_trig": [
+      16,
+      30
+    ],
+    "h0_swerve": [
+      2.6,
+      3.2
+    ],
+    "h0_swDur": [
+      2.4,
+      2.8
+    ]
+  },
+  "exposure": 1,
+  "why": "Thí nghiệm thiết kế có điều kiện, không phải thống kê đường thật. Mỗi lượt kiểm thử có sẵn một xe đạp nên exposure=1 chỉ mô tả việc đưa tác nhân vào cảnh; world=scene nên không suy ra tần suất mỗi chuyến ngoài đời. Căn cứ hình học: tâm E2 z=5.25 m và E1 z=1.75 m trong avsim/core.py, cách nhau 3.5 m; xe đạp xuất phát d=0, lạng 2.6–3.2 m để tâm đi vào vùng z=2.05–2.65 m, giao với bề rộng xe ta. swDur 2.4–2.8 s bảo đảm gia tốc ngang cực đại <= pi^2*3.2/(2*2.4^2)=2.742 m/s², dưới BIKE_LAT_MAX=3 trong avsim/studio.py. v=4 m/s là điều kiện thiết kế, không phải trung bình đo thực tế. Ego khởi hành x=-40 m; h0_x từ -5 đến 25 m đặt xe đạp phía trước 35–65 m. trig 16–30 m quét miền quanh quãng tiến tương đối (12-4)*2.6=20.8 m trong một lần lạng với vận tốc ban đầu; đây là miền kiểm thử cơ chế nhập làn, không phải phân phối thực nghiệm. Lấy đều trong các khoảng là giả định thiết kế công khai. File dựng theo schema của viewer do công cụ UI không kết nối được; chưa xác minh bằng thao tác chương 10."
+}
